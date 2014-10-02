@@ -2,9 +2,9 @@
 <Vsix Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
   <Identifier Id="350af5ed-1d03-468a-9b7e-90719854eac6">
     <Name>VSWorkingSetPkg</Name>
-    <Author>Company</Author>
+    <Author>Salimon Technologies</Author>
     <Version>1.0</Version>
-    <Description xml:space="preserve">Information about my package</Description>
+    <Description xml:space="preserve">VSWorkingSetPkg</Description>
     <Locale>1033</Locale>
     <InstalledByMsi>false</InstalledByMsi>
     <SupportedProducts>
