@@ -10,5 +10,5 @@ This extension uses C# code to demonstrate the following:
     Add a context menu item to any file in the Solution Explorer window
     Invoke an operation in the extension for the selected file (.cpp currently)
     Handle various Visual Studio events (opening/closing solutions and documents, etc)
-    Open a file in the editor and autoscroll to the last active line (sorta working)
+    Open a file in the editor and autoscroll to the last active line (mostly working)
     Load/Save serialized XML user data to/from Roaming profile folder 
