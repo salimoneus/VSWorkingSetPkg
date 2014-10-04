@@ -11,4 +11,4 @@ This extension uses C# code to demonstrate the following:
     Invoke an operation in the extension for the selected file (.cpp currently)
     Handle various Visual Studio events (opening/closing solutions and documents, etc)
     Open a file in the editor and autoscroll to the last active line (mostly working)
-    Load/Save serialized XML user data to/from Roaming profile folder 
+    Load/Save serialized XML user data to/from AppData folder 
