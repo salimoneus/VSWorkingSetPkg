@@ -135,21 +135,21 @@ namespace Company.VSWorkingSetPkg
             m_toolWindow = GetToolWindow();
             m_toolWindow.OpenItem += new VSWorkingSetToolWindow.OpenItemDelegate(m_toolWindow_OpenItem);
 
-            ReadConfigData();
+            ReadConfigData(m_activeSolution);
         }
 
         void SolutionEvents_BeforeClosing()
         {
-            WriteConfigData();
+            WriteConfigData(m_activeSolution);
             m_activeSolution = EmptySolution;
-            ReadConfigData();
+            ReadConfigData(m_activeSolution);
         }
 
         void SolutionEvents_Opened()
         {
             EnvDTE.DTE dte = (EnvDTE.DTE)GetService(typeof(SDTE));
             m_activeSolution = (dte.Solution.FullName == String.Empty ? EmptySolution : dte.Solution.FullName);
-            ReadConfigData();
+            ReadConfigData(m_activeSolution);
         }
 
         void DocumentEvents_DocumentClosing(EnvDTE.Document Document)
@@ -165,7 +165,7 @@ namespace Company.VSWorkingSetPkg
         {
             if (m_activeSolution == EmptySolution)
             {
-                WriteConfigData();
+                WriteConfigData(m_activeSolution);
             }
         }
 
@@ -175,15 +175,15 @@ namespace Company.VSWorkingSetPkg
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), path);
         }
 
-        private void ReadConfigData()
+        private void ReadConfigData(string solution)
         {
             Thread writeThread = new Thread(DoReadConfigData);
-            writeThread.Start();
+            writeThread.Start(solution);
         }
 
-        private void DoReadConfigData()
+        private void DoReadConfigData(object solution)
         {
-            string fileName = GetConfigPath(m_activeSolution);
+            string fileName = GetConfigPath(solution.ToString());
 
             try
             {
@@ -207,15 +207,15 @@ namespace Company.VSWorkingSetPkg
             }
         }
 
-        private void WriteConfigData()
+        private void WriteConfigData(string solution)
         {
             Thread writeThread = new Thread(DoWriteConfigData);
-            writeThread.Start();
+            writeThread.Start(solution);
         }
 
-        private void DoWriteConfigData()
+        private void DoWriteConfigData(object solution)
         {
-            string fileName = GetConfigPath(m_activeSolution);
+            string fileName = GetConfigPath(solution.ToString());
 
             try
             {
