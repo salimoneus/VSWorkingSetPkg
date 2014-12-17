@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using System.IO;
 using System.Xml.Serialization;
+using System.Threading;
 
 namespace Company.VSWorkingSetPkg
 {
@@ -47,6 +48,7 @@ namespace Company.VSWorkingSetPkg
         private string m_activeSolution = EmptySolution;
         private string m_openedItem;
         private int m_position = 0;
+        QueuedLock queuedLock = new QueuedLock();
 
         /// <summary>
         /// Default constructor of the package.
@@ -175,10 +177,18 @@ namespace Company.VSWorkingSetPkg
 
         private void ReadConfigData()
         {
+            Thread writeThread = new Thread(DoReadConfigData);
+            writeThread.Start();
+        }
+
+        private void DoReadConfigData()
+        {
             string fileName = GetConfigPath(m_activeSolution);
 
             try
             {
+                queuedLock.Enter();
+
                 FileStream ReadFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
                 XmlSerializer SerializerObj = new XmlSerializer(typeof(WorkingSet));
                 WorkingSet loadedData = (WorkingSet)SerializerObj.Deserialize(ReadFileStream);
@@ -191,26 +201,46 @@ namespace Company.VSWorkingSetPkg
             {
                 m_toolWindow.SetWorkingSet(null);
             }
+            finally
+            {
+                queuedLock.Exit();
+            }
         }
 
         private void WriteConfigData()
+        {
+            Thread writeThread = new Thread(DoWriteConfigData);
+            writeThread.Start();
+        }
+
+        private void DoWriteConfigData()
         {
             string fileName = GetConfigPath(m_activeSolution);
 
             try
             {
-                Directory.CreateDirectory(System.IO.Path.GetDirectoryName(fileName));
-                TextWriter WriteFileStream = new StreamWriter(fileName, false);
-                XmlSerializer SerializerObj = new XmlSerializer(typeof(WorkingSet));
+                queuedLock.Enter();
+
 
                 WorkingSet set = m_toolWindow.GetWorkingSet();
-                SerializerObj.Serialize(WriteFileStream, set);
+                if (set != null)
+                {
+                    Directory.CreateDirectory(System.IO.Path.GetDirectoryName(fileName));
+                    TextWriter WriteFileStream = new StreamWriter(fileName, false);
+                    XmlSerializer SerializerObj = new XmlSerializer(typeof(WorkingSet));
 
-                WriteFileStream.Close();
+                    SerializerObj.Serialize(WriteFileStream, set);
+
+                    WriteFileStream.Close();
+                }
             }
             catch (Exception e)
             {
                 Trace.WriteLine(e.ToString());
+            }
+            finally
+            {
+                queuedLock.Exit();
             }
         }
 

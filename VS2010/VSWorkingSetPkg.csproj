@@ -121,6 +121,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="QueuedLock.cs" />
     <Compile Include="VSWorkingSetControl.xaml.cs">
       <DependentUpon>VSWorkingSetControl.xaml</DependentUpon>
     </Compile>

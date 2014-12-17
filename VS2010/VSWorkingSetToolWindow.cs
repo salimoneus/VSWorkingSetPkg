@@ -60,27 +60,45 @@ namespace Company.VSWorkingSetPkg
 
         public void AddItem(string item)
         {
-            control.AddItem(item);
+            control.Dispatcher.Invoke(new Action(delegate()
+            {
+                control.AddItem(item);
+            }));
         }
 
         public WorkingSet GetWorkingSet()
         {
-            return control.GetWorkingSet();
+            WorkingSet workingSet = null;
+            control.Dispatcher.Invoke(new Action(delegate()
+            {
+                workingSet = control.GetWorkingSet();
+            }));
+
+            return workingSet;
         }
 
         public void SetWorkingSet(WorkingSet workingSet)
         {
-            control.SetWorkingSet(workingSet);
+            control.Dispatcher.Invoke(new Action(delegate()
+            {
+                control.SetWorkingSet(workingSet);
+            }));
         }
 
         public void UpdateItemPosition(string item, int position)
         {
-            control.UpdateItemPosition(item, position);
+            control.Dispatcher.Invoke(new Action(delegate()
+            {
+                control.UpdateItemPosition(item, position);
+            }));
         }
 
         public void RemoveItem(string item)
         {
-            control.RemoveItem(item);
+            control.Dispatcher.Invoke(new Action(delegate()
+            {
+                control.RemoveItem(item);
+            }));
         }
     }
 }
