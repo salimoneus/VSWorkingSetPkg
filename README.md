@@ -1,7 +1,7 @@
 VSWorkingSetPkg
 ===============
 
-This vsix extnesion package offers a Recently Used and Frequently Used list of source files in a dockable tool window, on a per-solution basis. 
+This vsix extension package offers a Recently Used and Frequently Used list of source files in a dockable tool window, on a per-solution basis. 
 
 This extension uses C# code to demonstrate the following:
 
