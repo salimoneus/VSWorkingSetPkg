@@ -48,7 +48,7 @@ namespace Company.VSWorkingSetPkg
         private string m_activeSolution = EmptySolution;
         private string m_openedItem;
         private int m_position = 0;
-        QueuedLock queuedLock = new QueuedLock();
+        MonitorQueue monitorQueue = new MonitorQueue();
 
         /// <summary>
         /// Default constructor of the package.
@@ -187,7 +187,7 @@ namespace Company.VSWorkingSetPkg
 
             try
             {
-                queuedLock.Enter();
+                monitorQueue.Enter();
 
                 FileStream ReadFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
                 XmlSerializer SerializerObj = new XmlSerializer(typeof(WorkingSet));
@@ -203,7 +203,7 @@ namespace Company.VSWorkingSetPkg
             }
             finally
             {
-                queuedLock.Exit();
+                monitorQueue.Exit();
             }
         }
 
@@ -219,7 +219,7 @@ namespace Company.VSWorkingSetPkg
 
             try
             {
-                queuedLock.Enter();
+                monitorQueue.Enter();
 
 
                 WorkingSet set = m_toolWindow.GetWorkingSet();
@@ -240,7 +240,7 @@ namespace Company.VSWorkingSetPkg
             }
             finally
             {
-                queuedLock.Exit();
+                monitorQueue.Exit();
             }
         }
 

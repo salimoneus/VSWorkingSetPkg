@@ -7,44 +7,39 @@ namespace Company.VSWorkingSetPkg
 {
     using System.Threading;
 
-    public sealed class QueuedLock
+    public sealed class MonitorQueue
     {
-        private object innerLock;
-        private volatile int ticketsCount = 0;
-        private volatile int ticketToRide = 1;
+        private object lockObject;
+        private volatile int ticketsDistributed = 0;
+        private volatile int ticketNowServing = 1;
 
-        public QueuedLock()
+        public MonitorQueue()
         {
-            innerLock = new Object();
+            lockObject = new Object();
         }
 
         public void Enter()
         {
-            #pragma warning disable 420
-            int myTicket = Interlocked.Increment(ref ticketsCount);
-            #pragma warning restore 420
-            Monitor.Enter(innerLock);
+            int myTicketNumber = Interlocked.Increment(ref ticketsDistributed);
+            Monitor.Enter(lockObject);
             while (true)
             {
-
-                if (myTicket == ticketToRide)
+                if (myTicketNumber == ticketNowServing)
                 {
                     return;
                 }
                 else
                 {
-                    Monitor.Wait(innerLock);
+                    Monitor.Wait(lockObject);
                 }
             }
         }
 
         public void Exit()
         {
-            #pragma warning disable 420
-            Interlocked.Increment(ref ticketToRide);
-            #pragma warning restore 420
-            Monitor.PulseAll(innerLock);
-            Monitor.Exit(innerLock);
+            Interlocked.Increment(ref ticketNowServing);
+            Monitor.PulseAll(lockObject);
+            Monitor.Exit(lockObject);
         }
     }
 }
