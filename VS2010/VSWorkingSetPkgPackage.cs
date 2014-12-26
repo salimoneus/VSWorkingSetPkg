@@ -131,14 +131,14 @@ namespace Company.VSWorkingSetPkg
             m_documentEvents.DocumentOpened += new EnvDTE._dispDocumentEvents_DocumentOpenedEventHandler(DocumentEvents_DocumentOpened);
             m_documentEvents.DocumentClosing += new EnvDTE._dispDocumentEvents_DocumentClosingEventHandler(DocumentEvents_DocumentClosing);
             m_solutionEvents.Opened += new EnvDTE._dispSolutionEvents_OpenedEventHandler(SolutionEvents_Opened);
-            m_solutionEvents.BeforeClosing += new EnvDTE._dispSolutionEvents_BeforeClosingEventHandler(SolutionEvents_BeforeClosing);
+            m_solutionEvents.AfterClosing += new EnvDTE._dispSolutionEvents_AfterClosingEventHandler(SolutionEvents_AfterClosing);
             m_toolWindow = GetToolWindow();
             m_toolWindow.OpenItem += new VSWorkingSetToolWindow.OpenItemDelegate(m_toolWindow_OpenItem);
 
             ReadConfigData(m_activeSolution);
         }
 
-        void SolutionEvents_BeforeClosing()
+        void SolutionEvents_AfterClosing()
         {
             WriteConfigData(m_activeSolution);
             m_activeSolution = EmptySolution;
