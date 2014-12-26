@@ -48,7 +48,7 @@ namespace Company.VSWorkingSetPkg
         private string m_activeSolution = EmptySolution;
         private string m_openedItem;
         private int m_position = 0;
-        MonitorQueue monitorQueue = new MonitorQueue();
+        //MonitorQueue monitorQueue = new MonitorQueue();
 
         /// <summary>
         /// Default constructor of the package.
@@ -177,8 +177,9 @@ namespace Company.VSWorkingSetPkg
 
         private void ReadConfigData(string solution)
         {
-            Thread writeThread = new Thread(DoReadConfigData);
-            writeThread.Start(solution);
+            //Thread writeThread = new Thread(DoReadConfigData);
+            //writeThread.Start(solution);
+            DoReadConfigData(solution);
         }
 
         private void DoReadConfigData(object solution)
@@ -187,7 +188,7 @@ namespace Company.VSWorkingSetPkg
 
             try
             {
-                monitorQueue.Enter();
+                //monitorQueue.Enter();
 
                 FileStream ReadFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
                 XmlSerializer SerializerObj = new XmlSerializer(typeof(WorkingSet));
@@ -203,14 +204,15 @@ namespace Company.VSWorkingSetPkg
             }
             finally
             {
-                monitorQueue.Exit();
+                //monitorQueue.Exit();
             }
         }
 
         private void WriteConfigData(string solution)
         {
-            Thread writeThread = new Thread(DoWriteConfigData);
-            writeThread.Start(solution);
+            //Thread writeThread = new Thread(DoWriteConfigData);
+            //writeThread.Start(solution);
+            DoWriteConfigData(solution);
         }
 
         private void DoWriteConfigData(object solution)
@@ -219,8 +221,7 @@ namespace Company.VSWorkingSetPkg
 
             try
             {
-                monitorQueue.Enter();
-
+                //monitorQueue.Enter();
 
                 WorkingSet set = m_toolWindow.GetWorkingSet();
                 if (set != null)
@@ -240,7 +241,7 @@ namespace Company.VSWorkingSetPkg
             }
             finally
             {
-                monitorQueue.Exit();
+                //monitorQueue.Exit();
             }
         }
 
