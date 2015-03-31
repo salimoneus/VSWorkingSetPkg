@@ -11,7 +11,7 @@
     <RootNamespace>Company.VSWorkingSetPkg</RootNamespace>
     <AssemblyName>VSWorkingSetPkg</AssemblyName>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SccProjectName>
     </SccProjectName>
@@ -121,57 +121,57 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MonitorQueue.cs" />
-    <Compile Include="VSWorkingSetControl.xaml.cs">
-      <DependentUpon>VSWorkingSetControl.xaml</DependentUpon>
+    <Compile Include="..\MonitorQueue.cs" />
+    <Compile Include="..\VSWorkingSetControl.xaml.cs">
+      <DependentUpon>..\VSWorkingSetControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VSWorkingSetData.cs" />
-    <Compile Include="VSWorkingSetToolWindow.cs" />
-    <Compile Include="Guids.cs" />
-    <Compile Include="Resources.Designer.cs">
+    <Compile Include="..\VSWorkingSetData.cs" />
+    <Compile Include="..\VSWorkingSetToolWindow.cs" />
+    <Compile Include="..\Guids.cs" />
+    <Compile Include="..\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>..\Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="VSWorkingSetPkgPackage.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PkgCmdID.cs" />
+    <Compile Include="..\GlobalSuppressions.cs" />
+    <Compile Include="..\VSWorkingSetPkgPackage.cs" />
+    <Compile Include="..\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\PkgCmdID.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
+    <EmbeddedResource Include="..\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>..\Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="VSPackage.resx">
+    <EmbeddedResource Include="..\VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="source.extension.vsixmanifest">
+    <None Include="..\source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Key.snk" />
+    <None Include="..\Key.snk" />
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="VSWorkingSetPkg.vsct">
+    <VSCTCompile Include="..\VSWorkingSetPkg.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images_32bit.bmp" />
-    <None Include="Resources\Images_24bit.bmp" />
+    <None Include="..\Resources\Images_32bit.bmp" />
+    <None Include="..\Resources\Images_24bit.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Package.ico" />
+    <Content Include="..\Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="VSWorkingSetControl.xaml">
+    <Page Include="..\VSWorkingSetControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
