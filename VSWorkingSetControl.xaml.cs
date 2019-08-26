@@ -46,9 +46,16 @@ namespace Company.VSWorkingSetPkg
             tabControl.Width = this.ActualWidth - sizeMargin;
 
             listBoxRecentItems.Height = tabControl.ActualHeight - sizeMargin * heightFactor;
-            listBoxFrequentItems.Height = tabControl.ActualHeight - sizeMargin * heightFactor;
             listBoxRecentItems.Width = tabControl.ActualWidth - sizeMargin * widthFactor;
+
+            listBoxFrequentItems.Height = tabControl.ActualHeight - sizeMargin * heightFactor;
             listBoxFrequentItems.Width = tabControl.ActualWidth - sizeMargin * widthFactor;
+
+            listBoxBookmarks.Height = tabControl.ActualHeight - sizeMargin * heightFactor;
+            listBoxBookmarks.Width = tabControl.ActualWidth - sizeMargin * widthFactor;
+
+            listBoxBreakpoints.Height = tabControl.ActualHeight - sizeMargin * heightFactor;
+            listBoxBreakpoints.Width = tabControl.ActualWidth - sizeMargin * widthFactor;
         }
 
         private void HandleDoubleClick(ListBox listBox)

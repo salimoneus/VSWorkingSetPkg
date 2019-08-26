@@ -11,14 +11,26 @@
         <TabControl Height="282" Name="tabControl" Width="223" Margin="0,10">
             <TabItem Header="Recent" Name="tabRecent">
                 <Grid>
-                    <ListBox Height="202" Name="listBoxRecentItems" Width="169" VerticalContentAlignment="Stretch" Margin="10" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                    <ListBox Height="202" Name="listBoxRecentItems" Width="180" VerticalContentAlignment="Stretch" Margin="4" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" KeyDown="listBoxRecentItems_KeyDown" />
                 </Grid>
             </TabItem>
             <TabItem Header="Frequent" Name="tabFrequent">
                 <Grid>
-                    <ListBox Height="202" Name="listBoxFrequentItems" Width="169" VerticalContentAlignment="Stretch" Margin="10" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                    <ListBox Height="202" Name="listBoxFrequentItems" Width="180" VerticalContentAlignment="Stretch" Margin="4" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" KeyDown="listBoxFrequentItems_KeyDown" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Bookmarks" Name="tabBookmarks">
+                <Grid>
+                    <ListBox Height="202" Name="listBoxBookmarks" Width="180" VerticalContentAlignment="Stretch" Margin="4" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Breakpoints" Name="tabBreakpoints">
+                <Grid>
+                    <ListBox Height="202" Name="listBoxBreakpoints" Width="180" VerticalContentAlignment="Stretch" Margin="4" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" />
                 </Grid>
             </TabItem>
         </TabControl>
